@@ -14,10 +14,11 @@ function ToggleColorMode({ children }) {
     palette: {
       mode,
     },
+    toggleColorMode,
   }), [mode]);
 
   return (
-    <ColorModeContext.Provider value={{ mode, setMode, toggleColorMode }}>
+    <ColorModeContext.Provider value={theme}>
       <ThemeProvider theme={theme}>
         {children}
       </ThemeProvider>

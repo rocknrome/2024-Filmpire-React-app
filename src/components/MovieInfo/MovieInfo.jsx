@@ -18,9 +18,9 @@ function MovieInfo() {
   const { id } = useParams();
 
   const { data, error, isFetching } = useGetMovieQuery(id);
-  const { data: favoriteMovies } = useGetListQuery({ listName: 'favorite/movies', accountId: user.id, sessionId: localStorage.getItem('sessionid'), page: 1 });
-  const { data: watchlistMovies } = useGetListQuery({ listName: 'watchlist/movies', accountId: user.id, sessionId: localStorage.getItem('sessionid'), page: 1 });
-  const { data: recommendations } = useGetRecommendationsQuery({ list: '/recommendations', movieid: id });
+  const { data: favoriteMovies } = useGetListQuery({ listName: 'favorite/movies', accountId: user.id, sessionId: localStorage.getItem('session_id'), page: 1 });
+  const { data: watchlistMovies } = useGetListQuery({ listName: 'watchlist/movies', accountId: user.id, sessionId: localStorage.getItem('session_id'), page: 1 });
+  const { data: recommendations } = useGetRecommendationsQuery({ list: '/recommendations', movie_id: id });
 
   const [open, setOpen] = useState(false);
   const [isMovieFavorited, setIsMovieFavorited] = useState(false);
@@ -34,7 +34,7 @@ function MovieInfo() {
   }, [watchlistMovies, data]);
 
   const addToFavorites = async () => {
-    await axios.post(`https://api.themoviedb.org/3/account/${user.id}/favorite?api_key=${process.env.REACT_APP_TMDB_KEY}&sessionid=${localStorage.getItem('sessionid')}`, {
+    await axios.post(`https://api.themoviedb.org/3/account/${user.id}/favorite?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${localStorage.getItem('session_id')}`, {
       media_type: 'movie',
       media_id: id,
       favorite: !isMovieFavorited,
@@ -44,7 +44,7 @@ function MovieInfo() {
   };
 
   const addToWatchList = async () => {
-    await axios.post(`https://api.themoviedb.org/3/account/${user.id}/watchlist?api_key=${process.env.REACT_APP_TMDB_KEY}&sessionid=${localStorage.getItem('sessionid')}`, {
+    await axios.post(`https://api.themoviedb.org/3/account/${user.id}/watchlist?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${localStorage.getItem('session_id')}`, {
       media_type: 'movie',
       media_id: id,
       watchlist: !isMovieWatchlisted,

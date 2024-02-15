@@ -37,5 +37,8 @@ module.exports = {
     'no-param-reassign': 0,
     'react/react-in-jsx-scope': 0,
     'jsx-a11y/anchor-is-valid': ['error', { components: ['Link'], specialLink: ['to', 'hrefLeft', 'hrefRight'], aspects: ['noHref', 'invalidHref', 'preferButton'] }],
+    'camelcase': ["error", {allow: ["movie_id", 'session_id', 'media_id', 'media_type', 'api_key', 'request_token']}],
+    "import/no-cycle": 0,
+    "import/order": "error",
   },
 };
